@@ -1,73 +1,147 @@
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background: linear-gradient(135deg, #1e1e2f, #2a2a40);
-    font-family: "Helvetica Neue", Arial, sans-serif;
+:root {
+/* Default (dark) variables */
+--bg-gradient: linear-gradient(135deg, #1e1e2f, #2a2a40);
+--calc-bg: #000;
+--history-color: #aaa;
+--display-color: #fff;
+--display-bg: #111;
+--btn-bg: #333;
+--btn-color: #fff;
+--btn-grey-bg: #a5a5a5;
+--btn-grey-color: #000;
+--btn-orange-bg: #ff9500;
+--btn-orange-color: #fff;
+--shadow: 0 10px 25px rgba(0,0,0,0.4);
 }
+
+/* Base layout (applies to all themes) */
+body {
+display: flex;
+justify-content: center;
+align-items: center;
+height: 100vh;
+background: var(--bg-gradient);
+font-family: "Helvetica Neue", Arial, sans-serif;
+margin: 0;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding: 15px 20px;
+  text-align: center;
+  background: var(--btn-grey-bg);
+  color: var(--btn-grey-color);
+}
+
 .calculator {
-  width: 300px;
-  background: #000;
-  border-radius: 30px;
-  overflow: hidden;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+width: 300px;
+background: var(--calc-bg);
+border-radius: 30px;
+overflow: hidden;
+box-shadow: var(--shadow);
 }
 
 .history {
-  color: #aaa;
-  text-align: right;
-  font-size: 1rem;
-  padding: 5px 20px 0 20px;
-  min-height: 20px;
+color: var(--history-color);
+text-align: right;
+font-size: 1rem;
+padding: 5px 20px 0 20px;
+min-height: 20px;
 }
 
 .display {
-  color: white;
-  text-align: right;
-  font-size: 2.5rem;
-  padding: 20px;
-  background: #111;
+color: var(--display-color);
+text-align: right;
+font-size: 2.5rem;
+padding: 20px;
+background: var(--display-bg);
 }
 
 .buttons {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
-  padding: 15px;
+display: grid;
+grid-template-columns: repeat(4, 1fr);
+gap: 10px;
+padding: 15px;
 }
 
 .btn {
-  background: #333;
-  color: white;
-  border: none;
-  font-size: 1.5rem;
-  border-radius: 50%;
-  height: 60px;
-  width: 60px;
-  cursor: pointer;
-  transition: transform 0.1s, background 0.2s;
-  display: flex;                
-  align-items: center;        
-  justify-content: center;    
+background: var(--btn-bg);
+color: var(--btn-color);
+border: none;
+font-size: 1.5rem;
+border-radius: 50%;
+height: 60px;
+width: 60px;
+cursor: pointer;
+transition: transform 0.1s, background 0.2s;
+display: flex;
+align-items: center;
+justify-content: center;
 }
 
 .btn:active {
-  transform: scale(0.95);
+transform: scale(0.95);
 }
 
-.btn.gray {
-  background: #a5a5a5;
-  color: black;
+.btn.grey {
+background: var(--btn-grey-bg);
+color: var(--btn-grey-color);
 }
 
 .btn.orange {
-  background: #ff9500;
-  color: white;
+background: var(--btn-orange-bg);
+color: var(--btn-orange-color);
 }
 
 .zero {
-  grid-column: span 2;
-  border-radius: 50px;
-  width: 100%;
+grid-column: span 2;
+border-radius: 50px;
+width: 100%;
+}
+
+/* Themes override variables by class on body */
+body.dark-theme {
+--bg-gradient: linear-gradient(135deg, #1e1e2f, #2a2a40);
+--calc-bg: #000;
+--history-color: #aaa;
+--display-color: #fff;
+--display-bg: #111;
+--btn-bg: #333;
+--btn-color: #fff;
+--btn-grey-bg: #a5a5a5;
+--btn-grey-color: #000;
+--btn-orange-bg: #ff9500;
+--btn-orange-color: #fff;
+--shadow: 0 10px 25px rgba(0,0,0,0.4);
+}
+
+body.light-theme {
+--bg-gradient: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+--calc-bg: #f0f0f0;
+--history-color: #666;
+--display-color: #333;
+--display-bg: #e0e0e0;
+--btn-bg: #e0e0e0;
+--btn-color: #333;
+--btn-grey-bg: #a5a5a5;
+--btn-grey-color: #fff;
+--btn-orange-bg: #ff9500;
+--btn-orange-color: #fff;
+--shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+body.blue-theme {
+--bg-gradient: linear-gradient(135deg, #1e3c72, #2a5298);
+--calc-bg: #0d1b2a;
+--history-color: #70a1ff;
+--display-color: #f0f0f0;
+--display-bg: #1b263b;
+--btn-bg: #415a77;
+--btn-color: #f0f0f0;
+--btn-grey-bg: #778da9;
+--btn-grey-color: #0d1b2a;
+--btn-orange-bg: #ff9500;
+--btn-orange-color: #fff;
+--shadow: 0 10px 25px rgba(0,0,0,0.4);
 }

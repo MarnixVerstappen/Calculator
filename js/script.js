@@ -1,12 +1,19 @@
 const display = document.querySelector(".display");
 const history = document.querySelector(".history");
 const buttons = document.querySelectorAll(".btn");
+const themeToggle = document.getElementById("theme-toggle");
 
 let current = "0";
 let previous = null;
 let operator = null;
 let expression = "";
 let justCalculated = false; // track if last press was =
+
+// Theme variables
+let currentTheme = "dark"; // default theme
+
+// Set initial theme class
+document.body.classList.add("dark-theme");
 
 const opMap = {
   "+": "+",
@@ -20,6 +27,30 @@ const opMap = {
   "÷": "/",
   ":": "/",
 };
+
+console.log("Initial theme:", currentTheme); // Log initial theme
+
+// Function to toggle theme
+themeToggle.addEventListener("click", () => {
+    console.log("Theme toggle clicked"); // Log when toggle is clicked
+    console.log("Current theme before toggle:", currentTheme); // Log current theme before toggle
+    // Remove all theme classes
+    document.body.classList.remove("dark-theme", "light-theme", "blue-theme");
+    
+    // Cycle through themes
+    if (currentTheme === "dark") {
+        document.body.classList.add("light-theme");
+        currentTheme = "light";
+    } else if (currentTheme === "light") {
+        document.body.classList.add("blue-theme");
+        currentTheme = "blue";
+    } else {
+        document.body.classList.add("dark-theme");
+        currentTheme = "dark";
+    }
+    console.log("Current theme after toggle:", currentTheme); // Log current theme after toggle
+    console.log("Theme classes on body:", document.body.classList); // Log current classes on body
+});
 
 function prettyOp(op) {
   switch (op) {
