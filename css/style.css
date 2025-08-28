@@ -145,3 +145,79 @@ body.blue-theme {
 --btn-orange-color: #fff;
 --shadow: 0 10px 25px rgba(0,0,0,0.4);
 }
+
+/* Side menu panel (hidden off screen at start) */
+.history-panel {
+  position: fixed;
+  top: 0;
+  right: -320px; /* hidden by default, outside viewport */
+  width: 300px;
+  height: 100%;
+  background: var(--calc-bg);
+  box-shadow: -4px 0 10px rgba(0,0,0,0.4);
+  padding: 20px;
+  transition: right 0.3s ease;
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+/* When open */
+.history-panel.open {
+  right: 0;
+}
+
+.history-panel h3 {
+  margin: 0 0 10px;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.history-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.history-list li {
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.history-list li:hover {
+  background: rgba(255,255,255,0.2);
+}
+
+/* Optional semi-transparent overlay behind menu */
+#overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  z-index: 999;
+}
+
+#overlay.show {
+  display: block;
+}
+
+/* Dark theme text */
+body.dark-theme .history-panel,
+body.dark-theme .history-panel li {
+  color: white;
+}
+
+/* Blue theme text */
+body.blue-theme .history-panel,
+body.blue-theme .history-panel li {
+  color: white;
+}
+
+/* Light theme text */
+body.light-theme .history-panel,
+body.light-theme .history-panel li {
+  color: #333; /* dark text on light background */
+}
