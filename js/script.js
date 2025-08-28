@@ -30,6 +30,11 @@ const opMap = {
 
 console.log("Initial theme:", currentTheme); // Log initial theme
 
+localStorage.setItem("theme", currentTheme);
+const savedTheme = localStorage.getItem("theme") || "dark";
+document.body.classList.add(`${savedTheme}-theme`);
+currentTheme = savedTheme;
+
 // Function to toggle theme
 themeToggle.addEventListener("click", () => {
     console.log("Theme toggle clicked"); // Log when toggle is clicked
@@ -67,6 +72,22 @@ function updateDisplay() {
   history.textContent = expression;
 }
 
+function backspace() {
+  if (justCalculated) return; // Do nothing if last was '='
+  
+  if (current.length > 1) {
+    current = current.slice(0, -1);  // remove last char
+  } else {
+    current = "0"; // reset if empty
+  }
+
+  // Update expression string too
+  if (expression.length > 0) {
+    expression = expression.slice(0, -1).trimEnd();
+  }
+
+  updateDisplay();
+}
 function appendDigit(d) {
   if (justCalculated) {
     // start new calc after =
@@ -173,6 +194,8 @@ buttons.forEach(btn => {
       appendDigit(".");
     } else if (value === "AC") {
       allClear();
+    } else if (value === "⌫") {
+      backspace();
     } else if (value === "+/-") {
       toggleSign();
     } else if (value === "%") {
@@ -203,7 +226,9 @@ document.addEventListener("keydown", (e) => {
     setOperator(k);
   } else if (k === "%") {
     percent();
-  }
+  } else if (k === "Backspace") {
+      backspace();
+}
 
   updateDisplay();
 });
